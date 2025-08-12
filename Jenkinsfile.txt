@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Repository') {
+            steps {
+                echo 'Cloning the project from Git...'
+                // Jenkins will automatically clone the repository from its configuration.
+                // We're just adding an echo for clarity.
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the website to the server...'
+                // The 'sh' command executes a shell command on the Jenkins agent.
+                // This command copies all files from the current directory (the workspace)
+                // to a remote server using SSH.
+                sh 'scp -r ./* user@your-server:/var/www/html'
+            }
+        }
+    }
+    
+    post {
+        success {
+            echo 'Deployment completed successfully! 🎉'
+        }
+        failure {
+            echo 'Deployment failed! 😭'
+        }
+    }
+}
