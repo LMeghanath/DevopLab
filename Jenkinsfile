@@ -10,10 +10,9 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying the website locally...'
-                // The 'sh' command executes a shell command.
-                // This command copies all files from the current directory (the workspace)
-                // to a local folder you create for this purpose.
-                sh 'cp -r ./* /var/www/html'
+                // The 'bat' command executes a Windows command
+                // 'xcopy' is used for copying files and directories on Windows
+                bat 'xcopy /E /Y .\\* C:\\deployed_website\\'
             }
         }
     }
