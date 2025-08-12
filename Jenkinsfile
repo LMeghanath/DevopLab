@@ -10,9 +10,8 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying the website locally...'
-                // The 'bat' command executes a Windows command
-                // 'xcopy' is used for copying files and directories on Windows
-                bat 'xcopy /E /Y .\\* C:\\deployed_website\\'
+                // Use a batch command and a Windows-style path
+                bat 'C:\\Windows\\System32\\cmd.exe /c xcopy /E /Y .\\* C:\\deployed_website\\'
             }
         }
     }
