@@ -10,8 +10,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 echo 'Deploying the website locally...'
-                // Use a batch command and a Windows-style path
-                bat 'C:\\Windows\\System32\\cmd.exe /c xcopy /E /Y .\\* C:\\deployed_website\\'
+                // Create the deployment directory first
+                bat 'mkdir C:\\deployed_website'
+                // Then, copy the files into it
+                bat 'xcopy /E /Y .\\* C:\\deployed_website\\'
             }
         }
     }
